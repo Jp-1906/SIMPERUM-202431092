@@ -1,61 +1,119 @@
 # SIMPERUM - Sistem Informasi & Manajemen Perumahan Berbasis Web
 
-SIMPERUM adalah aplikasi manajemen real estate berbasis web yang dirancang untuk mendigitalisasi pemetaan denah komplek perumahan, monitoring progres konstruksi unit secara berkala, serta mempermudah konsultasi pemasaran properti secara transparan dan responsif.
+SIMPERUM adalah platform tata kelola properti dan *real estate* berbasis web yang mengintegrasikan digitalisasi peta komplek interaktif, pemantauan rekam jejak progres konstruksi secara riil, serta optimalisasi saluran komunikasi pemasaran unit perumahan. 
 
-Aplikasi ini telah aktif dan dapat diakses secara daring melalui tautan berikut:
+Aplikasi ini telah dideploy secara daring dan dapat diakses melalui:
 🔗 **[Situs Resmi SIMPERUM](http://simperum.site.je)**
 
 ---
 
 ## Akun Demo Sistem (Test Credentials)
 
-Untuk mencoba fungsionalitas penuh aplikasi, Anda dapat menggunakan akun uji coba di bawah ini pada halaman login:
+Gunakan akun uji coba berikut untuk meninjau fungsionalitas penuh sistem berdasarkan masing-masing tingkatan hak akses (*role*):
 
-### 1. Hak Akses Admin (Admin Panel)
+### 1. Panel Administrator (Admin)
 * **Email:** `admin@simperum.com`
 * **Password:** `admin123`
 
-### 2. Hak Akses Pengguna (User Panel)
+### 2. Panel Pengguna (User)
 * **Email:** `jp@gmail.com`
 * **Password:** `123456`
-* *Catatan: Anda juga dapat mendaftarkan akun baru secara mandiri melalui menu registrasi.*
+* *Catatan: Anda juga dapat mendaftarkan akun baru secara mandiri melalui form registrasi.*
 
 ---
 
-## Fitur Utama & Antarmuka Sistem
+## Fitur Utama & Dokumentasi Antarmuka
 
-### 1. Gerbang Masuk Autentikasi (`index.php`)
-Sistem dilengkapi dengan pembatasan hak akses (*Role-Based Access Control*) menggunakan enkripsi basis data untuk memisahkan otoritas kerja antara akun Admin dan User. Desain boks dirancang minimalis dan elegan dengan aksen garis emas.
+### 1. Gerbang Autentikasi (`index.php`)
+Sistem menerapkan pembatasan hak akses (*Role-Based Access Control*) berbasis sesi (`session_start()`). Password akun dilindungi dengan enkripsi bawaan `md5` pada database untuk mencegah kebocoran otorisasi.
 
 ![Halaman Login SIMPERUM](login.png)
 
 ### 2. Denah Komplek Interaktif (`user/denah.php`)
-Peta visual tata letak blok perumahan berbasis sistem koordinat piksel X dan Y dinamis. Kotak unit rumah otomatis berubah warna berdasarkan status riil di database dan dapat diklik untuk meninjau data properti.
-* **Hijau:** Tersedia
-* **Merah:** Dipesan
-* **Biru:** Dibangun
-* **Abu-abu:** Terjual
+Peta visual tata letak perumahan menggunakan pemetaan absolut titik piksel koordinat X dan Y. Blok rumah berubah warna secara dinamis menyesuaikan status riil dari database dan dapat diklik untuk meninjau data properti.
+* **Hijau:** Tersedia | **Merah:** Dipesan | **Biru:** Dibangun | **Abu-abu:** Terjual
 
 ![Denah Komplek Interaktif](denah.png)
 
-### 3. Katalog Daftar Rumah (`user/rumah_user.php`)
-Daftar inventaris properti siap huni maupun indent yang disajikan dalam bentuk *card grid* proporsional, lengkap dengan foto unit, kode blok, lencana (*badge*) status, serta potongan deskripsi bangunan.
+### 3. Katalog Properti Modern (`user/rumah_user.php`)
+Daftar inventaris unit rumah siap huni maupun indent yang disajikan dalam bentuk *card grid* proporsional. Seluruh susunan kartu otomatis menyesuaikan lebar layar perangkat saat diakses lewat handphone.
 
 ![Katalog Daftar Rumah](data_rumah.png)
 
 ### 4. Detail Unit & Hubungi Marketing (`user/detail_rumah.php`)
-Menampilkan spesifikasi mendalam nilai investasi unit, alamat lokasi, riwayat rekam jejak pembangunan fisik lapangan, serta daftar pekerja konstruksi aktif. Dilengkapi formulir kirim pesan otomatis ke email developer (`naufalrizky.j.p@gmail.com`) serta tombol pintas WhatsApp dan Instagram Marketing.
+Menampilkan spesifikasi mendalam nilai investasi unit, alamat lokasi, riwayat rekam jejak pembangunan fisik lapangan (log persentase + gambar bukti), serta daftar pekerja konstruksi aktif. Dilengkapi formulir kirim pesan otomatis ke email developer (`naufalrizky.j.p@gmail.com`) serta tombol pintas WhatsApp dan Instagram Marketing.
 
 ![Detail Unit Properti](detail_rumah.png)
 
 ### 5. Manajemen Data Admin (`admin/rumah.php`)
-Panel kendali internal bagi pihak pengembang untuk memanipulasi data (*CRUD*), mengontrol titik koordinat denah, mendaftarkan tenaga ahli (tukang), membagikan penugasan kerja, serta memperbarui persentase progres fisik bangunan beserta unggah foto bukti lapangan.
+Panel kendali internal bagi pihak pengembang untuk melakukan operasi manipulasi data (*CRUD*), mengontrol titik koordinat denah, mendaftarkan tenaga ahli (tukang), membagikan penugasan kerja, serta memperbarui persentase progres fisik bangunan beserta unggah foto bukti lapangan.
 
 ![Tabel Manajemen Data Rumah](manage_rumah.png)
 
 ---
 
-## Struktur Direktori Proyek
+## Petunjuk Operasional Menjalankan Aplikasi Secara Lokal
+
+Ikuti langkah-langkah berikut untuk menjalankan SIMPERUM di lingkungan komputer lokal (*development environment*):
+
+### Prerequisites (Persyaratan Sistem)
+* **Web Server lokal:** XAMPP / Laragon / WampServer (Apache & MySQL aktif).
+* **Versi PHP:** Minimal PHP 8.2 atau yang lebih baru.
+
+### Langkah Instalasi
+1. **Salin Source Code:**
+   * Ekstrak atau klon folder proyek ini ke dalam direktori server lokal Anda (misal pada Windows: `C:/xampp/htdocs/simperum/`).
+2. **Impor Database MySQL:**
+   * Buka browser dan akses halaman `http://localhost/phpmyadmin/`.
+   * Buat database baru dengan nama `simperum`.
+   * Pilih menu **Import / Impor**, cari berkas basis data `.sql` bawaan proyek ini, kemudian klik **Go / Kirim**.
+3. **Konfigurasi Koneksi Database:**
+   * Buka berkas `config/koneksi.php` menggunakan teks editor pilihan Anda.
+   * Sesuaikan kredensial koneksi server lokal Anda:
+     ```php
+     <?php
+     $host = "localhost";
+     $user = "root";
+     $pass = "";
+     $db   = "simperum";
+
+     $conn = mysqli_connect($host, $user, $pass, $db);
+
+     if (!$conn) {
+         die("Koneksi gagal: " . mysqli_connect_error());
+     }
+     ?>
+     ```
+4. **Eksekusi Aplikasi:**
+   * Buka browser dan ketik alamat URL: `http://localhost/simperum/login.php`.
+
+---
+
+## Petunjuk Operasional Deploy Aplikasi ke Server Cloud
+
+Ikuti panduan berikut jika Anda ingin mengunggah aplikasi SIMPERUM ke server produksi (*Shared Hosting* / *cPanel*):
+
+### Langkah Deployment Cloud (cPanel)
+1. **Ekspor Database Lokal:**
+   * Buka `localhost/phpmyadmin`, pilih database `simperum`, lalu klik **Export** untuk mendapatkan file `.sql` terbaru.
+2. **Siapkan File Proyek:**
+   * Kompres seluruh isi folder proyek `simperum` menjadi satu file archive berformat `.zip`.
+3. **Unggah Berkas ke Hosting:**
+   * Masuk ke akun cPanel hosting Anda, lalu buka **File Manager**.
+   * Masuk ke direktori utama domain Anda (biasanya di dalam folder `public_html/`).
+   * Unggah file `simperum.zip` yang telah dibuat sebelumnya, lalu lakukan **Extract**.
+4. **Konfigurasi Database di Cloud:**
+   * Pada dashboard cPanel, masuk ke menu **MySQL Database Wizard**.
+   * Buat database baru dan user database baru, lalu hubungkan keduanya dengan centang opsi **All Privileges**.
+   * Masuk ke menu **phpMyAdmin** di cPanel, pilih nama database baru tersebut, dan lakukan **Import** file `.sql` lokal Anda.
+5. **Sesuaikan Berkas Koneksi Server:**
+   * Edit file `config/koneksi.php` yang ada di File Manager cPanel Anda. Sesuaikan variabel `$user`, `$pass`, dan `$db` dengan nama database baru hasil konfigurasi cPanel (biasanya berawalan prefix nama pengguna hosting, contoh: `userhost_simperum`).
+6. **Selesai:**
+   * Aplikasi SIMPERUM kini sudah dapat diakses secara publik menggunakan alamat domain Anda.
+
+---
+
+## Struktur Direktori Utama Proyek
 
 ```text
 📂 simperum/
