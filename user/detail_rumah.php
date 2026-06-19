@@ -47,12 +47,25 @@ $back_link = ($current_dir == 'user') ? 'rumah_user.php' : 'rumah.php';
         font-family: inherit;
     }
 
+    /* --- MOBILE HEADER TOPBAR --- */
+    .mobile-header {
+        display: none;
+        background: white;
+        padding: 15px 20px;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 2px solid #d4af37;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 999;
+    }
+
     .content {
         padding: 25px;
         box-sizing: border-box;
     }
 
-    /* Pembungkus layout grid atas */
     .detail-grid-top {
         display: grid; 
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
@@ -60,21 +73,24 @@ $back_link = ($current_dir == 'user') ? 'rumah_user.php' : 'rumah.php';
         margin-bottom: 24px;
     }
 
-    /* Pembungkus layout grid bawah */
     .detail-grid-bottom {
         display: grid; 
         grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
         gap: 24px;
     }
 
-    /* Responsif smartphone */
     @media (max-width: 768px) {
+        .mobile-header {
+            display: flex;
+        }
+
         .content {
-            padding: 85px 16px 25px 16px; /* Padding atas agar tidak tertutup header mobile induk */
+            margin-left: 0 !important; /* FIX: Menghapus paksa ruang kosong sisa sidebar di sebelah kiri */
+            padding: 85px 16px 25px 16px !important; /* Ruang atas aman dari mobile header */
         }
 
         .detail-grid-top, .detail-grid-bottom {
-            grid-template-columns: 1fr; /* Paksa menjadi satu kolom penuh di HP */
+            grid-template-columns: 1fr; /* Kolom tunggal penuhin layar di HP */
             gap: 16px;
         }
 
@@ -92,6 +108,11 @@ $back_link = ($current_dir == 'user') ? 'rumah_user.php' : 'rumah.php';
     </style>
 </head>
 <body>
+
+<div class="mobile-header">
+    <div style="font-weight: 700; color: #d4af37; font-size: 18px;">SIMPERUM</div>
+    <div style="color: #64748b; font-weight: 600; font-size: 12px; background: #f1f5f9; padding: 4px 10px; border-radius: 20px;">USER</div>
+</div>
 
 <div class="content">
     
@@ -179,7 +200,7 @@ $back_link = ($current_dir == 'user') ? 'rumah_user.php' : 'rumah.php';
                     <p style="color: #94a3b8; font-size: 12px; margin: 0 0 12px 0;">Pemasaran unit ini resmi ditutup oleh pengembang properti.</p>
                     <div style="background: rgba(244,63,94,0.1); padding: 12px 14px; border-radius: 6px; border: 1px solid rgba(244,63,94,0.2);">
                         <p style="font-size: 12px; color: #f43f5e; font-weight: 600; margin: 0; line-height: 1.4;">
-                            ⚠️ Maaf, konsultasi dan pemesanan dinonaktifkan karena unit ini sudah sukses dipesan atau terjual.
+                            Maaf, konsultasi dan pemesanan dinonaktifkan karena unit ini sudah sukses dipesan atau terjual.
                         </p>
                     </div>
                 <?php endif; ?>

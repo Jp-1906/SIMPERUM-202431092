@@ -19,12 +19,25 @@ $data = mysqli_query($conn, "SELECT * FROM rumah");
         font-family: inherit;
     }
 
+    /* --- MOBILE HEADER TOPBAR --- */
+    .mobile-header {
+        display: none;
+        background: white;
+        padding: 15px 20px;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 2px solid #d4af37;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 999;
+    }
+
     .content {
         padding: 25px;
         box-sizing: border-box;
     }
 
-    /* Memastikan susunan grid katalog tetap proporsional di berbagai resolusi layar */
     .katalog-grid {
         display: grid;
         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
@@ -32,7 +45,6 @@ $data = mysqli_query($conn, "SELECT * FROM rumah");
         margin-top: 20px;
     }
 
-    /* Memastikan gambar dalam katalog memnuhi boks dan tidak distorsi */
     .img-box img {
         width: 100%;
         height: 100%;
@@ -41,23 +53,33 @@ $data = mysqli_query($conn, "SELECT * FROM rumah");
     }
 
     @media (max-width: 768px) {
+        .mobile-header {
+            display: flex;
+        }
+
         .content {
-            padding: 85px 16px 25px 16px; /* Jarak aman atas dari komponen topbar header mobile */
+            margin-left: 0 !important; /* FIX: Menghapus paksa ruang kosong sisa sidebar di sebelah kiri */
+            padding: 85px 16px 25px 16px !important; 
         }
 
         .katalog-grid {
-            grid-template-columns: 1fr; /* Menjadi satu kolom penuh di layar HP */
+            grid-template-columns: 1fr; 
             gap: 16px;
         }
         
         .card {
-            min-height: auto !important; /* Membebaskan tinggi boks agar teks tidak terpotong di mobile */
+            min-height: auto !important; 
             padding: 16px !important;
         }
     }
     </style>
 </head>
 <body>
+
+<div class="mobile-header">
+    <div style="font-weight: 700; color: #d4af37; font-size: 18px;">SIMPERUM</div>
+    <div style="color: #64748b; font-weight: 600; font-size: 12px; background: #f1f5f9; padding: 4px 10px; border-radius: 20px;">USER</div>
+</div>
 
 <div class="content">
 
@@ -76,7 +98,6 @@ $data = mysqli_query($conn, "SELECT * FROM rumah");
     <?php while($r = mysqli_fetch_assoc($data)) { 
         $status = strtolower($r['status']);
         
-        // Logika pewarnaan badge dinamis
         $badgeBg = "rgba(148, 163, 184, 0.15)"; $badgeColor = "#64748b";
         if($status == 'tersedia') { $badgeBg = "rgba(16, 185, 129, 0.15)"; $badgeColor = "#059669"; }
         elseif($status == 'dipesan') { $badgeBg = "rgba(244, 63, 94, 0.15)"; $badgeColor = "#e11d48"; }
@@ -84,7 +105,6 @@ $data = mysqli_query($conn, "SELECT * FROM rumah");
     ?>
 
         <div class="card" style="display: flex; flex-direction: column; justify-content: space-between; min-height: 420px; background: white; margin: 0; box-sizing: border-box; padding: 20px;">
-            
             <div>
                 <div class="img-box" style="margin-bottom: 20px; background: #f1f5f9; display: flex; align-items: center; justify-content: center; height: 180px; border-radius: var(--radius-md); overflow: hidden; border: 1px solid var(--border-color);">
                     <?php 
@@ -108,7 +128,7 @@ $data = mysqli_query($conn, "SELECT * FROM rumah");
 
                 <p style="font-size: 14px; color: #64748b; margin-bottom: 24px; line-height: 1.5; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; height: 63px;">
                     <?php 
-                    echo !empty($r['deskripsi']) ? $r['deskripsi'] : "Unit properti eksklusif SIMPERUM dengan desain arsitektur modern dan material premium."; 
+                    echo !empty($r['deskripsi']) ? $r['deskripsi'] : "Unit properti eksklusif SIMPERUM dengan desain arsitektur modern and material premium."; 
                     ?>
                 </p>
             </div>
@@ -116,13 +136,11 @@ $data = mysqli_query($conn, "SELECT * FROM rumah");
             <a href="detail_rumah.php?id=<?= $r['id_rumah']; ?>" class="btn" style="text-align: center; justify-content: center; text-transform: uppercase; font-size: 12px; letter-spacing: 0.5px; display: flex; width: 100%; box-sizing: border-box; text-decoration: none;">
                 Lihat Detail Unit
             </a>
-
         </div>
 
     <?php } ?>
 
     </div>
 </div>
-
 </body>
 </html>

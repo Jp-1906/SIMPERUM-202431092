@@ -198,7 +198,7 @@ if(isset($_POST['register'])){
     </form>
 
     <div class="login-link">
-        Sudah memiliki akun? <a href="login.php">Masuk Kembali</a>
+        Sudah memiliki akun? <a href="index.php">Masuk Kembali</a>
     </div>
 
 </div>

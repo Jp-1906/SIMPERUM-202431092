@@ -1,4 +1,4 @@
-\<?php
+<?php
 session_start();
 if($_SESSION['role'] != 'user'){
     header("Location: ../login.php");
@@ -21,7 +21,7 @@ if($_SESSION['role'] != 'user'){
         font-family: inherit;
     }
 
-    /* --- MOBILE HEADER TOPBAR (Hanya muncul di mobile) --- */
+    /* --- MOBILE HEADER TOPBAR (Hanya aktif di mobile layar kecil) --- */
     .mobile-header {
         display: none;
         background: white;
@@ -31,9 +31,7 @@ if($_SESSION['role'] != 'user'){
         border-bottom: 2px solid #d4af37;
         box-shadow: 0 2px 10px rgba(0,0,0,0.05);
         position: fixed;
-        top: 0;
-        left: 0;
-        right: 0;
+        top: 0; left: 0; right: 0;
         z-index: 999;
     }
 
@@ -42,13 +40,13 @@ if($_SESSION['role'] != 'user'){
         box-sizing: border-box;
     }
 
-    /* HERO TOP */
+    /* HERO WELCOME BOX */
     .hero {
         background: white;
         padding: 20px;
         border-radius: 15px;
         border-left: 5px solid #d4af37;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
+        box-shadow: 0 10px 25px rgba(0,0,0,0.06);
         display: flex;
         justify-content: space-between;
         align-items: center;
@@ -56,32 +54,36 @@ if($_SESSION['role'] != 'user'){
     }
 
     .hero small {
-        color: #777;
+        color: #64748b;
     }
 
-    /* GRID MENU */
+    /* GRID MENU UTAMA (Menjaga boks tetap sejajar horizontal di PC) */
     .menu-grid {
         margin-top: 25px;
         display: grid;
-        grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+        grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
         gap: 20px;
     }
 
-    /* MENU CARD */
+    /* KARTU MENU NAVIGASI */
     .menu-card {
         background: white;
         padding: 24px;
         border-radius: 15px;
         border-left: 5px solid #d4af37;
-        box-shadow: 0 10px 25px rgba(0,0,0,0.08);
-        transition: 0.3s;
+        box-shadow: 0 10px 25px rgba(0,0,0,0.06);
+        transition: transform 0.3s, box-shadow 0.3s;
         text-decoration: none;
         color: inherit;
         box-sizing: border-box;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
     }
 
     .menu-card:hover {
-        transform: translateY(-6px);
+        transform: translateY(-5px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.1);
     }
 
     .menu-title {
@@ -92,15 +94,15 @@ if($_SESSION['role'] != 'user'){
 
     .menu-desc {
         font-size: 13px;
-        color: #777;
-        margin-top: 5px;
+        color: #64748b;
+        margin-top: 6px;
         line-height: 1.4;
     }
 
     .logout-container {
         grid-column: 1 / -1; 
         text-align: left;
-        margin-top: 10px;
+        margin-top: 15px;
     }
 
     /* --- BREAKPOINT MEDIA QUERIES (RESPONSIVE) --- */
@@ -110,7 +112,8 @@ if($_SESSION['role'] != 'user'){
         }
 
         .content {
-            padding: 85px 16px 25px 16px; /* Memberikan ruang atas dari mobile header */
+            margin-left: 0 !important; /* FIX: Menghapus paksa ruang kosong di sebelah kiri */
+            padding: 85px 16px 25px 16px !important; /* Mencegah tabrakan ruang dengan header mobile */
         }
 
         .hero {
@@ -125,13 +128,13 @@ if($_SESSION['role'] != 'user'){
         }
 
         .menu-grid {
-            grid-template-columns: 1fr; /* Mengubah menu menjadi satu kolom penuh di mobile */
+            grid-template-columns: 1fr; /* Memaksa menyusun ke bawah secara rapi khusus di layar HP */
             gap: 16px;
         }
 
         .logout-container {
             text-align: center;
-            margin-top: 20px;
+            margin-top: 24px;
         }
 
         .logout-btn {

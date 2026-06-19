@@ -18,12 +18,25 @@ $data = mysqli_query($conn, "SELECT * FROM rumah");
         font-family: inherit;
     }
 
+    /* --- MOBILE HEADER TOPBAR --- */
+    .mobile-header {
+        display: none;
+        background: white;
+        padding: 15px 20px;
+        align-items: center;
+        justify-content: space-between;
+        border-bottom: 2px solid #d4af37;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        position: fixed;
+        top: 0; left: 0; right: 0;
+        z-index: 999;
+    }
+
     .content {
         padding: 25px;
         box-sizing: border-box;
     }
 
-    /* Kontainer utama denah dengan scroll horizontal otomatis jika dibuka di HP */
     .denah-responsive-container {
         background: white; 
         padding: 24px; 
@@ -32,15 +45,14 @@ $data = mysqli_query($conn, "SELECT * FROM rumah");
         border: 1px solid var(--border-color); 
         margin-bottom: 24px;
         overflow-x: auto;
-        -webkit-overflow-scrolling: touch; /* Scroll halus di perangkat iOS */
+        -webkit-overflow-scrolling: touch;
     }
 
-    /* Memastikan boks denah mempertahankan ukuran aslinya di layar kecil agar posisi koordinat X & Y tetap presisi */
     .denah-canvas {
         position: relative;
         width: 100%;
         max-width: 900px;
-        min-width: 900px; /* Mengunci lebar minimum agar tidak menyusut di mobile */
+        min-width: 900px; 
         height: 500px;
         margin: auto;
         background: #fdfdfd;
@@ -50,7 +62,6 @@ $data = mysqli_query($conn, "SELECT * FROM rumah");
         overflow: hidden;
     }
 
-    /* Boks keterangan legenda status di bagian bawah */
     .legenda-container {
         background: white; 
         padding: 16px 24px; 
@@ -64,12 +75,17 @@ $data = mysqli_query($conn, "SELECT * FROM rumah");
     }
 
     @media (max-width: 768px) {
+        .mobile-header {
+            display: flex;
+        }
+
         .content {
-            padding: 85px 16px 25px 16px; /* Memberikan ruang jarak atas aman dari mobile header topbar */
+            margin-left: 0 !important; /* FIX: Menghapus paksa ruang kosong sisa sidebar di sebelah kiri */
+            padding: 85px 16px 25px 16px !important; 
         }
 
         .denah-responsive-container {
-            padding: 16px 8px; /* Menghemat ruang padding di handphone */
+            padding: 16px 8px; 
         }
 
         .legenda-container {
@@ -83,6 +99,11 @@ $data = mysqli_query($conn, "SELECT * FROM rumah");
     </style>
 </head>
 <body>
+
+<div class="mobile-header">
+    <div style="font-weight: 700; color: #d4af37; font-size: 18px;">SIMPERUM</div>
+    <div style="color: #64748b; font-weight: 600; font-size: 12px; background: #f1f5f9; padding: 4px 10px; border-radius: 20px;">USER</div>
+</div>
 
 <div class="content">
 
@@ -100,9 +121,7 @@ $data = mysqli_query($conn, "SELECT * FROM rumah");
     </p>
 
     <div class="denah-responsive-container">
-        
         <div class="denah-canvas">
-
             <div style="
                 position: absolute;
                 width: 100%;
@@ -149,22 +168,13 @@ $data = mysqli_query($conn, "SELECT * FROM rumah");
             </div>
 
             <?php while($r = mysqli_fetch_assoc($data)) { 
-                
+                $status = strtolower($r['status']);
                 $statusGradient = "linear-gradient(135deg, #94a3b8, #64748b)"; 
-                
-                if($r['status'] == 'tersedia') {
-                    $statusGradient = "linear-gradient(135deg, #10b981, #059669)"; 
-                } elseif($r['status'] == 'dipesan') {
-                    $statusGradient = "linear-gradient(135deg, #f43f5e, #e11d48)"; 
-                } elseif($r['status'] == 'dibangun') {
-                    $statusGradient = "linear-gradient(135deg, #0ea5e9, #0284c7)"; 
-                } elseif($r['status'] == 'terjual') {
-                    $statusGradient = "linear-gradient(135deg, #94a3b8, #64748b)"; 
-                }
+                if($status == 'tersedia') { $statusGradient = "linear-gradient(135deg, #10b981, #059669)"; }
+                elseif($status == 'dipesan') { $statusGradient = "linear-gradient(135deg, #f43f5e, #e11d48)"; }
+                elseif($status == 'dibangun') { $statusGradient = "linear-gradient(135deg, #0ea5e9, #0284c7)"; }
             ?>
-
                 <a href="detail_rumah.php?id=<?= $r['id_rumah']; ?>" style="text-decoration: none;">
-                    
                     <div style="
                         position: absolute;
                         left: <?= $r['posisi_x']; ?>px;
@@ -190,11 +200,8 @@ $data = mysqli_query($conn, "SELECT * FROM rumah");
                     title="<?= $r['kode_rumah']; ?> (<?= ucfirst($r['status']); ?>)">
                         <?= $r['kode_rumah']; ?>
                     </div>
-
                 </a>
-
             <?php } ?>
-
         </div>
     </div>
 
@@ -202,7 +209,6 @@ $data = mysqli_query($conn, "SELECT * FROM rumah");
         <span style="font-size: 12px; font-weight: 700; color: #64748b; text-transform: uppercase; letter-spacing: 1px;">
             Status Unit:
         </span>
-        
         <div style="display: flex; gap: 16px; flex-wrap: wrap;">
             <div style="display: flex; align-items: center; gap: 8px;">
                 <span style="width: 12px; height: 12px; background: linear-gradient(135deg, #10b981, #059669); border-radius: 4px;"></span>
@@ -224,6 +230,5 @@ $data = mysqli_query($conn, "SELECT * FROM rumah");
     </div>
 
 </div>
-
 </body>
 </html>
