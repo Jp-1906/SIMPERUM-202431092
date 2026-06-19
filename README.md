@@ -36,7 +36,7 @@ Peta visual tata letak blok perumahan berbasis sistem koordinat piksel X dan Y d
 * **Biru:** Dibangun
 * **Abu-abu:** Terjual
 
-![Denah Komplek Interaktif](image_1fb1b8.png)
+![Denah Komplek Interaktif](denah.png)
 
 ### 3. Katalog Daftar Rumah (`user/rumah_user.php`)
 Daftar inventaris properti siap huni maupun indent yang disajikan dalam bentuk *card grid* proporsional, lengkap dengan foto unit, kode blok, lencana (*badge*) status, serta potongan deskripsi bangunan.
