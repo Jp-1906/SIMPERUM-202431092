@@ -24,7 +24,7 @@ Untuk mencoba fungsionalitas penuh aplikasi, Anda dapat menggunakan akun uji cob
 
 ## Fitur Utama & Antarmuka Sistem
 
-### 1. Gerbang Masuk Autentikasi (`login.php`)
+### 1. Gerbang Masuk Autentikasi (`index.php`)
 Sistem dilengkapi dengan pembatasan hak akses (*Role-Based Access Control*) menggunakan enkripsi basis data untuk memisahkan otoritas kerja antara akun Admin dan User. Desain boks dirancang minimalis dan elegan dengan aksen garis emas.
 
 ![Halaman Login SIMPERUM](image_1fad21.png)
