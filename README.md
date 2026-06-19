@@ -85,7 +85,7 @@ Ikuti langkah-langkah berikut untuk menjalankan SIMPERUM di lingkungan komputer 
      ?>
      ```
 4. **Eksekusi Aplikasi:**
-   * Buka browser dan ketik alamat URL: `http://localhost/simperum/login.php`.
+   * Buka browser dan ketik alamat URL: `http://localhost/simperum/index.php`.
 
 ---
 
