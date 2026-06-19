@@ -27,7 +27,7 @@ Untuk mencoba fungsionalitas penuh aplikasi, Anda dapat menggunakan akun uji cob
 ### 1. Gerbang Masuk Autentikasi (`index.php`)
 Sistem dilengkapi dengan pembatasan hak akses (*Role-Based Access Control*) menggunakan enkripsi basis data untuk memisahkan otoritas kerja antara akun Admin dan User. Desain boks dirancang minimalis dan elegan dengan aksen garis emas.
 
-![Halaman Login SIMPERUM](image_1fad21.png)
+![Halaman Login SIMPERUM](login.png)
 
 ### 2. Denah Komplek Interaktif (`user/denah.php`)
 Peta visual tata letak blok perumahan berbasis sistem koordinat piksel X dan Y dinamis. Kotak unit rumah otomatis berubah warna berdasarkan status riil di database dan dapat diklik untuk meninjau data properti.
@@ -41,17 +41,17 @@ Peta visual tata letak blok perumahan berbasis sistem koordinat piksel X dan Y d
 ### 3. Katalog Daftar Rumah (`user/rumah_user.php`)
 Daftar inventaris properti siap huni maupun indent yang disajikan dalam bentuk *card grid* proporsional, lengkap dengan foto unit, kode blok, lencana (*badge*) status, serta potongan deskripsi bangunan.
 
-![Katalog Daftar Rumah](image_1fb0e3.png)
+![Katalog Daftar Rumah](data_rumah.png)
 
 ### 4. Detail Unit & Hubungi Marketing (`user/detail_rumah.php`)
 Menampilkan spesifikasi mendalam nilai investasi unit, alamat lokasi, riwayat rekam jejak pembangunan fisik lapangan, serta daftar pekerja konstruksi aktif. Dilengkapi formulir kirim pesan otomatis ke email developer (`naufalrizky.j.p@gmail.com`) serta tombol pintas WhatsApp dan Instagram Marketing.
 
-![Detail Unit Properti](image_1fadfc.jpg)
+![Detail Unit Properti](detail_rumah.png)
 
 ### 5. Manajemen Data Admin (`admin/rumah.php`)
 Panel kendali internal bagi pihak pengembang untuk memanipulasi data (*CRUD*), mengontrol titik koordinat denah, mendaftarkan tenaga ahli (tukang), membagikan penugasan kerja, serta memperbarui persentase progres fisik bangunan beserta unggah foto bukti lapangan.
 
-![Tabel Manajemen Data Rumah](image_1fad9c.jpg)
+![Tabel Manajemen Data Rumah](manage_rumah.png)
 
 ---
 
