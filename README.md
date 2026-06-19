@@ -89,30 +89,6 @@ Ikuti langkah-langkah berikut untuk menjalankan SIMPERUM di lingkungan komputer 
 
 ---
 
-## Petunjuk Operasional Deploy Aplikasi ke Server Cloud
-
-Ikuti panduan berikut jika Anda ingin mengunggah aplikasi SIMPERUM ke server produksi (*Shared Hosting* / *cPanel*):
-
-### Langkah Deployment Cloud (cPanel)
-1. **Ekspor Database Lokal:**
-   * Buka `localhost/phpmyadmin`, pilih database `simperum`, lalu klik **Export** untuk mendapatkan file `.sql` terbaru.
-2. **Siapkan File Proyek:**
-   * Kompres seluruh isi folder proyek `simperum` menjadi satu file archive berformat `.zip`.
-3. **Unggah Berkas ke Hosting:**
-   * Masuk ke akun cPanel hosting Anda, lalu buka **File Manager**.
-   * Masuk ke direktori utama domain Anda (biasanya di dalam folder `public_html/`).
-   * Unggah file `simperum.zip` yang telah dibuat sebelumnya, lalu lakukan **Extract**.
-4. **Konfigurasi Database di Cloud:**
-   * Pada dashboard cPanel, masuk ke menu **MySQL Database Wizard**.
-   * Buat database baru dan user database baru, lalu hubungkan keduanya dengan centang opsi **All Privileges**.
-   * Masuk ke menu **phpMyAdmin** di cPanel, pilih nama database baru tersebut, dan lakukan **Import** file `.sql` lokal Anda.
-5. **Sesuaikan Berkas Koneksi Server:**
-   * Edit file `config/koneksi.php` yang ada di File Manager cPanel Anda. Sesuaikan variabel `$user`, `$pass`, dan `$db` dengan nama database baru hasil konfigurasi cPanel (biasanya berawalan prefix nama pengguna hosting, contoh: `userhost_simperum`).
-6. **Selesai:**
-   * Aplikasi SIMPERUM kini sudah dapat diakses secara publik menggunakan alamat domain Anda.
-
----
-
 ## Struktur Direktori Utama Proyek
 
 ```text
